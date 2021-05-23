@@ -14,9 +14,10 @@ if(count($dirDatas)<=$index)
 	exit;
 $path=$dirDatas[$index];
 $info=getimagesize($path);
+if(!$info) $info=array();
 $width=$info[0];
 $height=$info[1];
-$type=$info["mime"];
+$type=$info["mime"]||"";
 $suffix=str_replace("image/", "", $type);
 if($suffix=="png") {
 	$img=imagecreatefrompng($path);

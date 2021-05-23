@@ -2,6 +2,10 @@
 $config=json_decode(
 	file_get_contents("config.json")
 );
+if(substr($config->inputImages,-1)!=="/")
+	$config->inputImages .= "/";
+if(substr($config->outputImages,-1)!=="/")
+	$config->outputImages .= "/";
 global $pathArr;
 $pathArr=array();
 
