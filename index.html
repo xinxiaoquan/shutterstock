@@ -3,8 +3,19 @@
 	<head>
 		<title>shutterstock图片过滤程序</title>
 		<meta charset="utf-8" />
+		<style>
+			button {
+				display:block;
+				margin:10px 0;
+			}
+		</style>
 	</head>
 	<body>
+		<div>
+			读取目录：<span id="inputImages"></span>
+			<br/>
+			输出目录：<span id="outputImages"></span>
+		</div>
 		<button id="createDirDatas">生成目录数据和指针文件</button>
 		<div id="isCreate"></div>
 		<button id="copeDatas">开始处理</button>
@@ -30,6 +41,12 @@
 					}
 				});
 			}
+			
+			ajax("config.json?"+Math.random(),function(data) {
+				var obj=JSON.parse(data);
+				inputImages.innerHTML=obj.inputImages;
+				outputImages.innerHTML=obj.outputImages;
+			});
 		
 			function ajax(url, fun) {
 				var xhr = new XMLHttpRequest();
