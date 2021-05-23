@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>shutterstock图片过滤程序</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<button id="createDirDatas">生成目录数据和指针文件</button>
+		<div id="isCreate"></div>
+		<button id="copeDatas">开始处理</button>
+		<ol id="box"></ol>
+		<script>
+			createDirDatas.onclick=function() {
+				ajax("createDirDatas.php",function(res) {
+					isCreate.innerHTML="创建成功！文件总数："+res;
+					createDirDatas.onclick=null;
+					copeDatas.onclick=function() {
+						fn();
+						copeDatas.onclick=null;
+					}
+					function fn() {
+						ajax("copeDatas.php",function(res) {
+							if(!res) return;
+							var li=document.createElement("li");
+							li.innerHTML=res;
+							//li.scrollIntoView(true);
+							box.appendChild(li);
+							fn();
+						});
+					}
+				});
+			}
+		
+			function ajax(url, fun) {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						if (fun) fun(this.responseText);
+					}
+				}
+				xhr.open("get", url, true);
+				xhr.send(null);
+			}
+		</script>
+	</body>
+</html>
