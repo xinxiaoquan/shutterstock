@@ -21,7 +21,7 @@ $type=$info["mime"]||"";
 $suffix=str_replace("image/", "", $type);
 if($suffix=="png") {
 	$img=imagecreatefrompng($path);
-	$path=$config->inputImages.$index."jpeg";
+	$path=$config->inputImages.$index.".jpeg";
 	$suffix="jpeg";
 	imagejpeg($img, $path);
 }
