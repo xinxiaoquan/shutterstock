@@ -18,6 +18,8 @@ echo count($pathArr);
 
 function getDirInfo($path) {
 	$dir=opendir($path);
+	if(!$dir)
+		return false;
 	while($fileName=readdir($dir)) {
 		if($fileName=="." || $fileName=="..")
 			continue;

@@ -27,7 +27,7 @@
 					createDirDatas.onclick=null;
 					copeDatas.onclick=function() {
 						fn();
-						copeDatas.onclick=null;
+						this.onclick=null;
 					}
 					function fn() {
 						ajax("copeDatas.php",function(res) {
